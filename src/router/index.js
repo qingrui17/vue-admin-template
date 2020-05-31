@@ -183,6 +183,30 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/selfset',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Selfset',
+        component: () => import('@/views/selfset/index'),
+        meta: { title: 'Selfset', icon: 'selfset' }
+      }
+    ]
+  },
+  {
+    path: '/phone',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Phone',
+        component: () => import('@/views/phone/index'),
+        meta: { title: 'Phone', icon: 'phone' }
+      }
+    ]
+  },
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
