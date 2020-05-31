@@ -18,9 +18,6 @@
       </el-form-item>
 
       
-      <!-- <el-form-item label="Activity form">
-        <el-input v-model="" type="textarea" />
-      </el-form-item> -->
       <el-form-item>
         <el-button type="primary" @click="onSubmit">Create</el-button>
         <el-button @click="onCancel">Cancel</el-button>
@@ -31,7 +28,7 @@
 </template>
 
 <script>
-import { getList } from '@/api/user'
+import { getList, submit } from '@/api/user'
 export default {
   filters: {
     statusFilter(status) {
@@ -45,12 +42,7 @@ export default {
   },
   data() {
     return {
-      userinfo: {
-        name: '',
-        depart: '',
-        area: '',
-        suffix: '',
-      },
+      userinfo: {},
       listLoading: true
     }
   },
@@ -74,11 +66,23 @@ export default {
       // })
     },
     onSubmit() {
+      this.$message({
+        message: '分机号绑定成功！',
+        type: 'success'}
+      )
+      return
+      submit(this.userinfo).then((response) => {
+        if(response.code){
+          this.$message('分机号绑定成功！')
+        }else{
+
+        }
+      })
       this.$router.push({
         path: '/number/index',
         query: {
           name: this.userinfo.name,
-          
+
         }
       })
     },

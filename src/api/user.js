@@ -22,3 +22,11 @@ export function logout() {
     method: 'post'
   })
 }
+
+export function submit(data) {
+  return request({
+    url: '/sfs/sf',
+    method: 'post',
+    data: data
+  })
+}
