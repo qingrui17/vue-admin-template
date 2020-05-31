@@ -78,6 +78,7 @@ export default {
         path: '/number/index',
         query: {
           name: this.userinfo.name,
+          
         }
       })
     },
