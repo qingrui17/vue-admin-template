@@ -32,14 +32,14 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://gbicom.cn.new.lbq/',
+        target: 'http://192.168.150.197:9002',
         changeOrigin: true,
         pathRewrite: {
          
         }
       }
     },
-    host:'localhost',
+    host:'192.168.150.197',
     port: port,
     open: true,
     overlay: {

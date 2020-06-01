@@ -23,10 +23,18 @@ export function logout() {
   })
 }
 
-export function submit(data) {
+export function bindpbx(pbx) {
   return request({
-    url: '/sfs/sf',
+    url: '/api/bindpbx',
     method: 'post',
-    data: data
+    pbx: pbx
+  })
+}
+
+export function getInfo1() {
+  return request({
+    url: '/api/userinfo',
+    method: 'get',
+    params: {}
   })
 }
