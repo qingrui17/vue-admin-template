@@ -17,7 +17,7 @@
         <el-input v-model="userinfo.pbx" />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit" v-show="userinfo.pbx == '' " >提交</el-button>
+        <el-button type="primary" @click="onSubmit" >提交</el-button>
       </el-form-item>
     </el-form>
 

@@ -51,7 +51,7 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: { title: '首页', icon: 'dashboard' }
     }]
   },
 
@@ -63,7 +63,7 @@ export const constantRoutes = [
         path: 'index',
         name: 'Number',
         component: () => import('@/views/number/index'),
-        meta: { title: 'Number', icon: 'number' }
+        meta: { title: '选号台', icon: 'number' }
       }
     ]
   },
@@ -75,7 +75,7 @@ export const constantRoutes = [
         path: 'index',
         name: 'Selfset',
         component: () => import('@/views/selfset/index'),
-        meta: { title: 'Selfset', icon: 'selfset' }
+        meta: { title: '个人设置', icon: 'selfset' }
       }
     ]
   },

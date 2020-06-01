@@ -8,9 +8,9 @@
       <div v-for="caller in item.caller.split(',')" class="text item">
         {{ caller }}
       </div>
-      <el-button class="usebutton" type="text" v-show="bindnumber == item.number" @click="onDeluse(item.number)" >释放</el-button>
-      <el-button class="usebutton" type="text" v-show="bindnumber.trim() != '' " disabled>领用</el-button>
-      <el-button class="usebutton" type="text" v-show="bindnumber.trim() == '' " @click="onUse(item.number)" >领用</el-button>
+      <el-button class="usebutton" type="text" v-if="bindnumber == item.number" @click="onDeluse(item.id)" >释放</el-button>
+      <el-button class="usebutton" type="text" v-else-if="bindnumber.trim() != '' " disabled>领用</el-button>
+      <el-button class="usebutton" type="text" v-else="bindnumber.trim() == '' " @click="onUse(item.id)" >领用</el-button>
     </el-card>
 
   </div>
@@ -56,19 +56,19 @@ export default {
       })
     },
 
-    onUse(number) {
-      bindUse(number).then((response) => {
+    onUse(id) {
+      bindUse(id).then((response) => {
         if (response.errno == '0') {
           this.$message({
             message: '领用成功！',
             type: 'success'
           })
-          this.$router.push({
-            path: '/number/index',
-            query: {
 
-            }
+          getInfo1().then(response => {
+            this.userinfo = response.data
+            this.bindnumber = this.userinfo.bindnumber
           })
+
         } else {
           this.$message({
             message: response.msg,
@@ -78,18 +78,16 @@ export default {
       })
     },
 
-    onDeluse(number) {
-      delUse(number).then((response) => {
-        if (response.code == '0') {
+    onDeluse(id) {
+      delUse(id).then((response) => {
+        if (response.errno == '0') {
           this.$message({
             message: '释放成功！',
             type: 'success'
           })
-          this.$router.push({
-            path: '/number/index',
-            query: {
-
-            }
+          getInfo1().then(response => {
+            this.userinfo = response.data
+            this.bindnumber = this.userinfo.bindnumber
           })
         } else {
           this.$message({

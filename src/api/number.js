@@ -7,18 +7,18 @@ export function getList(params) {
   })
 }
 
-export function bindUse(id){
-    return request({
-        url: '/api/use/' + id,
-        method: 'post',
-        id: id
-    })
+export function bindUse(id) {
+  return request({
+    url: '/api/use/' + id,
+    method: 'post',
+    id: id
+  })
 }
 
-export function delUse(id){
-    return request({
-        url: '/api/unuse/' + id,
-        method: 'delete',
-        id: id
-    })
+export function delUse(id) {
+  return request({
+    url: '/api/unuse/' + id,
+    method: 'delete',
+    id: id
+  })
 }
