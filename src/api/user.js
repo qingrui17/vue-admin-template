@@ -27,8 +27,11 @@ export function bindpbx(pbx) {
   return request({
     url: '/api/bindpbx',
     method: 'post',
-    pbx: pbx
-  })
+    headers: {
+      'Content-type': 'application/json'
+    },
+    data: { pbx: pbx.toString() }
+  });
 }
 
 export function getInfo1() {

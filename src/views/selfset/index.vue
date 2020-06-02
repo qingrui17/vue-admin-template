@@ -17,7 +17,7 @@
         <el-input v-model="userinfo.pbx" />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit" >提交</el-button>
+        <el-button type="primary" @click="onSubmit">提交</el-button>
       </el-form-item>
     </el-form>
 
@@ -53,14 +53,13 @@ export default {
     fetchData() {
       this.listLoading = true
       getInfo1().then(response => {
-        console.log(response)
         this.userinfo = response.data
         this.listLoading = false
       })
     },
     onSubmit() {
       bindpbx(this.userinfo.pbx).then((response) => {
-        if (response.errno == '0') {
+        if (response.errno === 0) {
           this.$message({
             message: '分机号绑定成功！',
             type: 'success'

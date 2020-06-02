@@ -8,9 +8,9 @@
       <div v-for="caller in item.caller.split(',')" class="text item">
         {{ caller }}
       </div>
-      <el-button class="usebutton" type="text" v-if="bindnumber == item.number" @click="onDeluse(item.id)" >释放</el-button>
-      <el-button class="usebutton" type="text" v-else-if="bindnumber.trim() != '' " disabled>领用</el-button>
-      <el-button class="usebutton" type="text" v-else="bindnumber.trim() == '' " @click="onUse(item.id)" >领用</el-button>
+      <el-button v-if="bindnumber == item.number" class="usebutton" type="primary" @click="onDeluse(item.id)">释放</el-button>
+      <el-button v-else-if="bindnumber.trim() != '' || item.count >= 30" class="unusebutton" type="info" disabled>领用</el-button>
+      <el-button v-else class="usebutton" type="primary" @click="onUse(item.id)">领用</el-button>
     </el-card>
 
   </div>
@@ -58,17 +58,19 @@ export default {
 
     onUse(id) {
       bindUse(id).then((response) => {
-        if (response.errno == '0') {
+        if (response.errno === 0) {
           this.$message({
             message: '领用成功！',
             type: 'success'
           })
 
+          getList().then(response => {
+            this.list = response.data
+          })
           getInfo1().then(response => {
             this.userinfo = response.data
             this.bindnumber = this.userinfo.bindnumber
           })
-
         } else {
           this.$message({
             message: response.msg,
@@ -80,10 +82,13 @@ export default {
 
     onDeluse(id) {
       delUse(id).then((response) => {
-        if (response.errno == '0') {
+        if (response.errno === 0) {
           this.$message({
             message: '释放成功！',
             type: 'success'
+          })
+          getList().then(response => {
+            this.list = response.data
           })
           getInfo1().then(response => {
             this.userinfo = response.data
@@ -116,6 +121,16 @@ export default {
     padding: 3px 5px;
     margin-bottom:8px;
   }
+  .unusebutton {
+    color:#fff;
+    float: right;
+    width:120px;
+    height:30px;
+    background-color:#ccc;
+    padding: 3px 5px;
+    margin-bottom:8px;
+  }
+
   .circle {
       width: 35px;
       height: 35px;
