@@ -30,8 +30,8 @@ export function bindpbx(pbx) {
     headers: {
       'Content-type': 'application/json'
     },
-    data: { pbx: pbx.toString() }
-  });
+    data: { "pbx": pbx.toString() }
+  })
 }
 
 export function getInfo1() {
@@ -41,3 +41,4 @@ export function getInfo1() {
     params: {}
   })
 }
+

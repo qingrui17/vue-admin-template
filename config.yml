@@ -1,0 +1,9 @@
+db:
+  name: test
+  host: 10.10.107.105
+  port: 30307
+  user: root
+  pass: 111222
+  maxidleconns: 8
+  maxopenconns: 16
+  maxlifetime: 120
