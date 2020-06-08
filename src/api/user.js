@@ -24,13 +24,15 @@ export function logout() {
 }
 
 export function bindpbx(pbx) {
+  var formData = new formData()
+  formData.append('pbx', pbx.toString())
   return request({
     url: '/api/bindpbx',
     method: 'post',
     headers: {
-      'Content-type': 'application/json'
+      'Content-type': 'application/x-www-form-urlencoded'
     },
-    data: { "pbx": pbx.toString() }
+    data: formData
   })
 }
 

@@ -79,6 +79,18 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/choose',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Choose',
+        component: () => import('@/views/choose/index'),
+        meta: { title: '下拉菜单', icon: 'choose' }
+      }
+    ]
+  },
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
