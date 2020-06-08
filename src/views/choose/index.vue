@@ -43,16 +43,20 @@ export default {
   methods: {
     fetchData() {
       this.loading = true
-      getOrgSubList('0').then(response => {
-        this.dept = response
+      getOrgList('408').then(response => {
+        console.log(response)
+        this.dept = response.data
         this.orgid = this.dept[0].orgid
         this.changeSub()
         this.loading = false
       })
+        .catch(error => {
+          console.log(error)
+        })
     },
     changeSub() {
       getOrgSubList(this.orgid).then(response => {
-        this.subDept = response
+        this.subDept = response.data
         this.subOrgid = this.subDept[0].orgid
       })
     }

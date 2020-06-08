@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export function getOrgList(params) {
+export function getOrgList(id) {
   return request({
-    url: '/api/org',
+    url: '/v2/org/list/' + id,
     method: 'get'
   })
 }

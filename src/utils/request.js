@@ -14,6 +14,7 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // do something before request is sent
+    config.headers['Authorization'] = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXYiOjEsImVtcElkIjoiMTYxNCIsImVtcE5vIjoiWFItQkotMDA4MzIiLCJleHAiOiIxNTkxNjIxNzE4In0.I5s0u1iO4c0pc5_g7u5lpnalNZnIhNoq__8V78BAp29FqLD4xllqTqLVoOPWhvhSS_vxUn8k8F2VMPvGaw1QMTwl-pe8h6F4AOtUTQmOKXALQ6T8zEGidq3VsKZhBbkw_GRbMHamXKu0tQIqug81a01NIWxSX_4B2r0CJoWr1SJM2ZkhGmxiJicjiHhOOQ4Q_zCXtEtN1rrzFz_hAEoLtX391AL4QU6RFvX4lqyMLVBASr8mHftTLuq60gHuzzetnFfW8Y_TBt4Y5jg4HpsWwv1tnr3YXoGQeG66tOUAoPvhs-iS3YSsFfEcPhIJjdfhYKnqzteFoVZkfmQ9RffvPA'
 
     if (store.getters.token) {
       // let each request carry token
@@ -45,6 +46,7 @@ service.interceptors.response.use(
   response => {
     const res = response.data
     const arr = [200, 20000]
+    console.log(response)
     // if the custom code is not 20000, it is judged as an error.
     if (!arr.indexOf(res.code)) {
       Message({

@@ -31,14 +31,15 @@ module.exports = {
   productionSourceMap: false,
   devServer: {
     proxy: {
-      '/api': {
-        target: 'http://localhost:9002',
+      '/v2': {
+        target: 'http://e.ciprun.cn/',
         changeOrigin: true,
         pathRewrite: {
          
         }
       }
     },
+    host: '192.168.150.197',
     port: port,
     open: true,
     overlay: {
