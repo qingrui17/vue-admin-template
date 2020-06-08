@@ -1,8 +1,5 @@
 <template>
   <div class="app-container">
-    <el-button type="primary">
-      更多菜单<i class="el-icon-arrow-down el-icon--right"></i>
-    </el-button>
 
     <el-select v-model="orgid" placeholder="请选择" @change="changeSub">
       <el-option
@@ -21,6 +18,25 @@
         :value="item.orgid">
       </el-option>
     </el-select>
+    <br />
+    <br />
+    <el-select v-model="orgid2" placeholder="请选择" @change="changeSub2">
+      <el-option
+        v-for="item in dept2"
+        :key="item.orgid"
+        :label="item.title"
+        :value="item.orgid">
+      </el-option>
+    </el-select>
+
+    <el-select v-model="subOrgid2" placeholder="请选择">
+      <el-option
+        v-for="item in subDept2"
+        :key="item.orgid"
+        :label="item.title"
+        :value="item.orgid">
+      </el-option>
+    </el-select>
   </div>
 </template>
 
@@ -34,7 +50,11 @@ export default {
       orgid: '',
       subOrgid: '',
       dept: [],
-      subDept: []
+      subDept: [],
+      orgid2: '',
+      subOrgid2: '',
+      dept2: [],
+      subDept2: [],
     }
   },
   created() {
@@ -44,10 +64,12 @@ export default {
     fetchData() {
       this.loading = true
       getOrgList('408').then(response => {
-        console.log(response)
         this.dept = response.data
         this.orgid = this.dept[0].orgid
         this.changeSub()
+        this.dept2 = response.data
+        this.orgid2 = this.dept2[0].orgid
+        this.changeSub2()
         this.loading = false
       })
         .catch(error => {
@@ -58,6 +80,12 @@ export default {
       getOrgSubList(this.orgid).then(response => {
         this.subDept = response.data
         this.subOrgid = this.subDept[0].orgid
+      })
+    },
+    changeSub2() {
+      getOrgSubList(this.orgid2).then(response => {
+        this.subDept2 = response.data
+        this.subOrgid2 = this.subDept2[0].orgid
       })
     }
   }
